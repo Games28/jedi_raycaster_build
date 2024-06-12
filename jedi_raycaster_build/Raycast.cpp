@@ -52,7 +52,8 @@ void Raycast::castRay(float rayAngle, int stripID, Player& player, Map& map)
     // will always be a multiple of TILE_SIZE
 
     // Find the y-coordinate of the closest horizontal grid intersection
-    yintercept = int(player.y / TILE_SIZE) * TILE_SIZE;
+    //errors with this dont know how to resolve
+    yintercept = (int)(player.y / TILE_SIZE) * TILE_SIZE;
     yintercept += isRayFacingDn ? TILE_SIZE : 0;
 
     // Find the x-coordinate on the closest horizontal grid intersection
@@ -136,7 +137,7 @@ void Raycast::castRay(float rayAngle, int stripID, Player& player, Map& map)
     // will always be a multiple of TILE_SIZE
 
     // Find the x-coordinate of the closest vertical grid intersection
-    xintercept = int(player.x / TILE_SIZE) * TILE_SIZE;
+    xintercept = (int)(player.x / TILE_SIZE) * TILE_SIZE;
     xintercept += isRayFacingRt ? TILE_SIZE : 0;
 
     // Find the y-coordinate on the closest vertical grid intersection
@@ -254,10 +255,10 @@ void Raycast::renderMapRays(olc::PixelGameEngine* PGEptr, Player& player, int te
     int tstIndex = rays[testRay].listinfo.size() - 1;
     if (tstIndex >= 0) {
         PGEptr->DrawLine(
-            player.x * MINIMAP_SCALE_FACTOR,
-            player.y * MINIMAP_SCALE_FACTOR,
-            rays[testRay].listinfo[tstIndex].wallHitX * MINIMAP_SCALE_FACTOR,
-            rays[testRay].listinfo[tstIndex].wallHitY * MINIMAP_SCALE_FACTOR,
+            (int)(player.x * MINIMAP_SCALE_FACTOR),
+            (int)(player.y * MINIMAP_SCALE_FACTOR),
+            (int)(rays[testRay].listinfo[tstIndex].wallHitX * MINIMAP_SCALE_FACTOR),
+            (int)(rays[testRay].listinfo[tstIndex].wallHitY * MINIMAP_SCALE_FACTOR),
             olc::MAGENTA
         );
     }

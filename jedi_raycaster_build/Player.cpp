@@ -325,10 +325,10 @@ void Player::renderMapPlayer(olc::PixelGameEngine* PGEptr)
 {
 	olc::Pixel p = olc::CYAN;
 	PGEptr->FillRect(
-		x * MINIMAP_SCALE_FACTOR,
-		y * MINIMAP_SCALE_FACTOR,
-		width * MINIMAP_SCALE_FACTOR,
-		height * MINIMAP_SCALE_FACTOR,
+		(int)(x * MINIMAP_SCALE_FACTOR),
+		(int)(y * MINIMAP_SCALE_FACTOR),
+		(int)(width * MINIMAP_SCALE_FACTOR),
+		(int)(height * MINIMAP_SCALE_FACTOR),
 		p
 	);
 }

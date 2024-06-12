@@ -22,9 +22,9 @@ struct intersectInfo
 	std::vector<int> textures;
 
 	//multilevel flying and crouching
-	int bottom_front;
-	int ceil_front;
-	int ceil_back;
+	float bottom_front;
+	float ceil_front;
+	float ceil_back;
 
 	// for debugging purposes
 	bool rayUp, rayDn, rayLt, rayRt;

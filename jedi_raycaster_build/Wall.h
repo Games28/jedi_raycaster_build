@@ -29,7 +29,7 @@ public:
 	Wall() = default;
 	void wallTextures();
 	void changeColorIntensity(olc::Pixel& p, float factor);
-	void calculateBottomAndTop(float wallDistance,int halfheight, float wallheight, int& wallceil, int& wallfloor, Player& player);
+	void calculateBottomAndTop(float wallDistance,float halfheight, float wallheight, float& wallceil, float& wallfloor, Player& player);
 	olc::Pixel SelectSceneryPixel( int textureid, int samplex, int sampley, float distance,Side side);
 	void renderWallProjection(olc::PixelGameEngine* PGEptr, Player& player, Raycast& rays, Map& map);
 	int getTexture(int x,int y, int& id, Map& map);

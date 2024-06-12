@@ -273,7 +273,7 @@ void ObjectManager::Input(olc::PixelGameEngine* pge, Player& player, float delta
 
 void ObjectManager::Render(olc::PixelGameEngine* pge, Player& player, Raycast& ray)
 {
-	int halfscreenheight = WINDOW_HEIGHT * player.fPlayerH;
+	int halfscreenheight = (int)(WINDOW_HEIGHT * player.fPlayerH);
 
 	auto normalizeAngle = [=](float* angle)
 		{
@@ -328,7 +328,7 @@ void ObjectManager::Render(olc::PixelGameEngine* pge, Player& player, Raycast& r
 		}
 	);
 
-	int nHorizonHeight = WINDOW_HEIGHT * player.fPlayerH + (int)player.lookupordown;
+	int nHorizonHeight = (int)(WINDOW_HEIGHT * player.fPlayerH + (int)player.lookupordown);
 
 	
 	
@@ -481,18 +481,18 @@ void ObjectManager::RenderMapObjects(olc::PixelGameEngine* pge)
 			p = olc::GREY;
 		}
 		pge->FillRect(
-			obj.x * MINIMAP_SCALE_FACTOR,
-			obj.y * MINIMAP_SCALE_FACTOR,
+			(int)(obj.x * MINIMAP_SCALE_FACTOR),
+			(int)(obj.y * MINIMAP_SCALE_FACTOR),
 			2,
 			2,
 			p
 		);
 
 		pge->DrawLine(
-			obj.x * MINIMAP_SCALE_FACTOR,
-			obj.y * MINIMAP_SCALE_FACTOR,
-			(obj.x + cos(obj.offset) * 40) * MINIMAP_SCALE_FACTOR,
-			(obj.y + sin(obj.offset) * 40) * MINIMAP_SCALE_FACTOR
+			(int)(obj.x * MINIMAP_SCALE_FACTOR),
+			(int)(obj.y * MINIMAP_SCALE_FACTOR),
+			(int)((obj.x + cos(obj.offset) * 40) * MINIMAP_SCALE_FACTOR),
+			(int)((obj.y + sin(obj.offset) * 40) * MINIMAP_SCALE_FACTOR)
 			);
 	}
 }
