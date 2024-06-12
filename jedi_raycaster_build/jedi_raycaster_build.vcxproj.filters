@@ -21,6 +21,9 @@
     <ClInclude Include="Application.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="defs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -49,9 +52,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="defs.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

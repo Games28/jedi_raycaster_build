@@ -9,16 +9,12 @@ void Application::Setup()
 	//sprite.initsprites();
 	saber.initSaber();
 	map.InitMap(MAP_NUM_COLS_X, MAP_NUM_ROWS_Y);
-
-	for (int i = 0; i < map.Maplevels.size(); i++)
-	{
-		map.addMapLayer(map.Maplevels[i]);
-	}
-	
-	map.initblocks();
-	//map.addTextures(map.Texture_levelOne);
-	//map.addTextures(map.Texture_levelTwo);
-	//map.addTextures(map.Texture_levelThree);
+	map.addMapLayer(map.Map_levelOne);
+	map.addMapLayer(map.Map_levelTwo);
+	map.addMapLayer(map.Map_levelThree);
+	map.addTextures(map.Texture_levelOne);
+	map.addTextures(map.Texture_levelTwo);
+	map.addTextures(map.Texture_levelThree);
 	//powers.initSprite();
 	OM.InitSprite();
 	OM.InitObject();

@@ -11,7 +11,6 @@
 
 
 
-
 class Wall
 {
 
@@ -31,11 +30,11 @@ public:
 	void wallTextures();
 	void changeColorIntensity(olc::Pixel& p, float factor);
 	void calculateBottomAndTop(float wallDistance,int halfheight, float wallheight, int& wallceil, int& wallfloor, Player& player);
-	olc::Pixel SelectSceneryPixel( int textureid, float samplex, float sampley, float distance,Side side);
+	olc::Pixel SelectSceneryPixel( int textureid, int samplex, int sampley, float distance,Side side);
 	void renderWallProjection(olc::PixelGameEngine* PGEptr, Player& player, Raycast& rays, Map& map);
 	int getTexture(int x,int y, int& id, Map& map);
 public:
-	std::vector<olc::Sprite*> wallSprites;
+	olc::Sprite sprites[7];
 	int text = 0;
 	int time = 0;
 
@@ -43,20 +42,7 @@ public:
 	float fTestRay = 0.5f;
 	Side side = Side::Default;
 
-public:
 
-	std::vector<std::string> WallSpritesFiles =
-	{
-		"scenery/tatooinewindow1.png",
-		"scenery/stonewall.png",
-		"scenery/graystone.png",
-		"scenery/tatooinewindow2.png",
-		"scenery/window1.png",
-		"scenery/wood.png",
-		"scenery/wall3.png",
-		"scenery/bluestone.png",
-		"scenery/colorstone.png"
-	};
 };
 
 #endif // !WALL_H

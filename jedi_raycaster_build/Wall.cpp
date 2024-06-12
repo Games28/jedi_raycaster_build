@@ -2,21 +2,13 @@
 
 void Wall::wallTextures()
 {
-
-	for (int i = 0; i < WallSpritesFiles.size(); i++)
-	{
-		std::string name = WallSpritesFiles[i];
-		olc::Sprite* tmp = new olc::Sprite(name);
-		wallSprites.push_back(tmp);
-		tmp = nullptr;
-	}
     //std::string sPath = "image/";
-	//sprites[0] = olc::Sprite("scenery/sand1.png");
-	//sprites[1] = olc::Sprite("scenery/stonewall.png");
-	//sprites[2] = olc::Sprite("scenery/Tatooinedoor1.png");
-	//sprites[3] = olc::Sprite("scenery/Tatooinedoor2.png");
-	//sprites[4] = olc::Sprite("scenery/tatooinewindow2.png");
-	//sprites[5] = olc::Sprite("scenery/Tatooinehousewall.png");
+	sprites[0] = olc::Sprite("scenery/sand1.png");
+	sprites[1] = olc::Sprite("scenery/stonewall.png");
+	sprites[2] = olc::Sprite("scenery/Tatooinedoor1.png");
+	sprites[3] = olc::Sprite("scenery/Tatooinedoor2.png");
+	sprites[4] = olc::Sprite("scenery/tatooinewindow2.png");
+	sprites[5] = olc::Sprite("scenery/Tatooinehousewall.png");
 	
 	
 
@@ -36,7 +28,7 @@ void Wall::calculateBottomAndTop(float wallDistance, int halfheight, float wallh
 	wallfloor = halfheight + (float(nsliceHeight) *  player.fPlayerH );
 }
 
-olc::Pixel Wall::SelectSceneryPixel(int textureid, float samplex, float sampley, float distance, Side side)
+olc::Pixel Wall::SelectSceneryPixel(int textureid, int samplex, int sampley, float distance, Side side)
 {
 	olc::Pixel p;
 
@@ -47,17 +39,17 @@ olc::Pixel Wall::SelectSceneryPixel(int textureid, float samplex, float sampley,
 	{
 	case Side::Top:
 	{
-		p = wallSprites[textureid]->GetPixel(isamplex, isampley);
+		p = sprites[textureid].GetPixel(isamplex, isampley);
 	}break;
 
 	case Side::Roof:
 	{
-		p = wallSprites[textureid]->GetPixel(isamplex, isampley);
+		p = sprites[textureid].GetPixel(isamplex, isampley);
 	}break;
 
 	case Side::Bottom:
 	{
-		p = wallSprites[textureid]->GetPixel(isamplex, isampley);
+		p = sprites[textureid].GetPixel(isamplex, isampley);
 		//float fdistance = ((3.0f / distance) * 100.0f);
 		//
 		//if (fdistance >= 1.0f) fdistance = 1.0f;
@@ -71,7 +63,7 @@ olc::Pixel Wall::SelectSceneryPixel(int textureid, float samplex, float sampley,
 
 	case Side::WalL:
 	{
-		p = wallSprites[textureid]->GetPixel(isamplex, isampley);
+		p = sprites[textureid].GetPixel(isamplex, isampley);
 
 		float brightness = 3.0;
 		float scale = 0.0f;
@@ -334,7 +326,7 @@ void Wall::renderWallProjection(olc::PixelGameEngine* PGEptr, Player& player, Ra
 				// having both sample coordinates, get the sample and draw the pixel
 				
 					//olc::Pixel auxSample = sprites[textureid].GetPixel(fSampleX, fSampleY);
-				olc::Pixel auxSample = SelectSceneryPixel(textureid, fSampleX, fSampleY,fDistnace, Side::WalL);
+				olc::Pixel auxSample = SelectSceneryPixel(textureid, (int)fSampleX, (int)fSampleY,fDistnace, Side::WalL);
 					PGEptr->Draw(x, y, auxSample);
 				//DepthDraw(x, y, rays.rays[x].listinfo[0].distance, auxSample);
 

@@ -48,7 +48,7 @@ bool Map::isOutSideMap(float x, float y)
 void Map::renderMapGrid(olc::PixelGameEngine* PGEptr)
 {
     // fill background for minimap
-    PGEptr->FillRect( 0, 0, MAP_NUM_COLS_X * TILE_SIZE * MINIMAP_SCALE_FACTOR, MAP_NUM_ROWS_Y * TILE_SIZE * MINIMAP_SCALE_FACTOR, olc::DARK_YELLOW );
+    PGEptr->FillRect( 0, 0, (int)MAP_NUM_COLS_X * TILE_SIZE * MINIMAP_SCALE_FACTOR, (int)MAP_NUM_ROWS_Y * TILE_SIZE * MINIMAP_SCALE_FACTOR, olc::DARK_YELLOW );
 
     // draw each tile
 	for (int i = 0; i < MAP_NUM_ROWS_Y; i++) {
@@ -191,31 +191,27 @@ void Map::addMapLayer( const std::string& sUserMap)
 
 	float* fMap = new float[MapX * MapY];
 
-
 	for (int y = 0; y < MapY; y++)
 	{
 		for (int x = 0; x < MapX; x++)
 		{
 			switch (sMap[y * MapX + x]) {
-			case BLOCK_TENTH: fMap[y * MapX + x] = 0.10f; break;
-			case BLOCK_TWENYTH: fMap[y * MapX + x] = 0.20f; break;
-			case BLOCK_THRITY: fMap[y * MapX + x] = 0.30f; break;
-			case BLOCK_FORTH: fMap[y * MapX + x] = 0.40f; break;
-			case BLOCK_FIFTH: fMap[y * MapX + x] = 0.50f; break;
-			case BLOCK_SIXTH: fMap[y * MapX + x] = 0.60f; break;
-			case BLOCK_SEVENTH: fMap[y * MapX + x] = 0.70f; break;
-			case BLOCK_1QRTR: fMap[y * MapX + x] = 0.25f; break;
-			case BLOCK_HALVE: fMap[y * MapX + x] = 0.50f; break;
-			case BLOCK_3QRTR: fMap[y * MapX + x] = 0.75f; break;
-			case BLOCK_BLANK: fMap[y * MapX + x] = 0.0f; break;
-			case BLOCK_ONE  : fMap[y * MapX + x] = 1.0f; break;
-			case BLOCK_TWO  : fMap[y * MapX + x] = 2.0f; break;
-			case BLOCK_THREE: fMap[y * MapX + x] = 3.0f; break;
-			case BLOCK_FOUR : fMap[y * MapX + x] = 4.0f; break;
-			case BLOCK_FIVE : fMap[y * MapX + x] = 5.0f; break;
+			case GRND_FLOOR: fMap[y * MapX + x] = 0.0f; break;
+			case FRST_FLOOR: fMap[y * MapX + x] = 1.0f; break;
 
+			case FLOOR_1QRTR: fMap[y * MapX + x] = 0.25f; break;
+			case FLOOR_HALVE: fMap[y * MapX + x] = 0.50f; break;
+			case FLOOR_3QRTR: fMap[y * MapX + x] = 0.75f; break;
 
-			
+			case         '1': fMap[y * MapX + x] = 0.10f; break;
+			case         '2': fMap[y * MapX + x] = 0.20f; break;
+			case         '3': fMap[y * MapX + x] = 0.30f; break;
+			case         '4': fMap[y * MapX + x] = 0.40f; break;
+			case         '5': fMap[y * MapX + x] = 0.50f; break;
+			case         '6': fMap[y * MapX + x] = 0.60f; break;
+			case         '7': fMap[y * MapX + x] = 0.70f; break;
+			case         '8': fMap[y * MapX + x] = 0.80f; break;
+			case         '9': fMap[y * MapX + x] = 0.90f; break;
 
 			default: std::cout << "ERROR: AddLayer() --> unknown sMap value: " << sMap[y * MapX + x] << std::endl;
 			}
@@ -227,54 +223,41 @@ void Map::addMapLayer( const std::string& sUserMap)
 
 void Map::addTextures(const std::string& sUserTexture)
 {
-	//if (MapX * MapY != (int)sUserTexture.length())
-	//{
-	//	std::cout << "ERROR: InitMap() -->  mismatch between map dimensions and length of map string" << std::endl;
-	//}
-	//
-	//std::string sTexture = sUserTexture;
-	//
-	//int* ITexture = new int[MapX * MapY];
-	//
-	//for (int y = 0; y < MapY; y++)
-	//{
-	//	for (int x = 0; x < MapX; x++)
-	//	{
-	//		switch (sTexture[y * MapX + x]) {
-	//		case TEXTURE_BLANK: ITexture[y * MapX + x] = -1; break;
-	//		case TEXTURE_ZERO: ITexture[y * MapX + x] = 0; break;
-	//		case TEXTURE_ONE: ITexture[y * MapX + x] = 1; break;
-	//		case TEXTURE_TWO: ITexture[y * MapX + x] = 2; break;
-	//		case TEXTURE_THREE: ITexture[y * MapX + x] = 3; break;
-	//		case TEXTURE_FOUR: ITexture[y * MapX + x] = 4; break;
-	//		case TEXTURE_FIVE: ITexture[y * MapX + x] = 5; break;
-	//		
-	//
-	//		default: std::cout << "ERROR: AddLayer() --> unknown sTexture value: " << sTexture[y * MapX + x] << std::endl;
-	//		}
-	//	}
-	//}
-	//iTextures.push_back(ITexture);
-	//sTextures.push_back(sTexture);
+	if (MapX * MapY != (int)sUserTexture.length())
+	{
+		std::cout << "ERROR: InitMap() -->  mismatch between map dimensions and length of map string" << std::endl;
+	}
+
+	std::string sTexture = sUserTexture;
+
+	int* ITexture = new int[MapX * MapY];
+
+	for (int y = 0; y < MapY; y++)
+	{
+		for (int x = 0; x < MapX; x++)
+		{
+			switch (sTexture[y * MapX + x]) {
+			case TEXTURE_BLANK: ITexture[y * MapX + x] = -1; break;
+			case TEXTURE_ZERO: ITexture[y * MapX + x] = 0; break;
+			case TEXTURE_ONE: ITexture[y * MapX + x] = 1; break;
+			case TEXTURE_TWO: ITexture[y * MapX + x] = 2; break;
+			case TEXTURE_THREE: ITexture[y * MapX + x] = 3; break;
+			case TEXTURE_FOUR: ITexture[y * MapX + x] = 4; break;
+			case TEXTURE_FIVE: ITexture[y * MapX + x] = 5; break;
+			
+
+			default: std::cout << "ERROR: AddLayer() --> unknown sTexture value: " << sTexture[y * MapX + x] << std::endl;
+			}
+		}
+	}
+	iTextures.push_back(ITexture);
+	sTextures.push_back(sTexture);
 }
 
 void Map::InitMap(int sizex, int sizey)
 {
 	MapX = sizex;
 	MapY = sizey;
-}
-
-void Map::initblocks()
-{
-	blocktypes =
-	{
-		{0,1.0,0,0,0,0,0,0,false},
-		{1,1.0,1,1,1,1,1,1,false},
-		{2,1.0,2,2,2,2,2,2,false},
-		{3,1.0,3,3,3,3,3,3,false},
-		{4,1.0,4,4,4,4,0,0,true}, //transparent
-		{5,1.0,5,5,5,5,5,5,false}
-	};
 }
 
 

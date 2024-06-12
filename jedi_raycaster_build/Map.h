@@ -5,16 +5,6 @@
 #include "MapEditor.h"
 #include "olcPixelGameEngine.h"
 
-typedef struct BLock_infomation
-{
-	int blockid;
-	float fheight;
-	int northside, southside, westside, eastside,
-		topside, bottomside;
-	bool btransparent;
-
-}block_info;
-
 class Map
 {
 public:
@@ -45,6 +35,7 @@ public:
 	int getFromHeightMap( int x, int y );
 	void setTextures();
 
+
 	int getTextureMap(    int x, int y, int Height);
 
 	int gettexture(int x, int y,int layer);
@@ -59,9 +50,7 @@ public:
 	std::vector<int*> iTextures;
 	std::vector<std::string> sTextures;
 	
-	//block type test
-	std::vector<block_info> blocktypes;
-	void initblocks();
+	
 
 	texturesOne layeronetextures[5];
 	
@@ -69,45 +58,48 @@ public:
 	int texturesize = 6;
 	int totallayers = 3;
 public:
-#define BLOCK_TENTH '!'     // no block
-#define BLOCK_TWENYTH '#'     // block of height 1
-#define BLOCK_THRITY '@'     //                 2
-#define BLOCK_FORTH '*'     //                 3
-#define BLOCK_FIFTH '-'     //                 4
-#define BLOCK_SIXTH '+'     //                 5
-#define BLOCK_SEVENTH '='     //                 6
+#define GRND_FLOOR '.'     // no block
+#define FRST_FLOOR '#'     // block of height 1
+#define SCND_FLOOR '@'     //                 2
+#define THRD_FLOOR '*'     //                 3
+#define FRTH_FLOOR '-'     //                 4
+#define FFTH_FLOOR '+'     //                 5
+#define SXTH_FLOOR '='     //                 6
 
-#define BLOCK_1QRTR 'Q'    // block of height 1/4
-#define BLOCK_HALVE 'H'    //                 2/4
-#define BLOCK_3QRTR 'T'   //                 3/4
+#define FLOOR_1QRTR 'Q'    // block of height 1/4
+#define FLOOR_HALVE 'H'    //                 2/4
+#define FLOOR_3QRTR 'T'   //                 3/4
 
-#define BLOCK_BLANK '.'
-#define BLOCK_ZERO '0'
-#define BLOCK_ONE '1'
-#define BLOCK_TWO '2'
-#define BLOCK_THREE '3'
-#define BLOCK_FOUR '4'
-#define BLOCK_FIVE '5'
+#define TEXTURE_BLANK '.'
+#define TEXTURE_ZERO '0'
+#define TEXTURE_ONE '1'
+#define TEXTURE_TWO '2'
+#define TEXTURE_THREE '3'
+#define TEXTURE_FOUR '4'
+#define TEXTURE_FIVE '5'
 
 public:
 	//map layout
-	std::vector<std::string> Maplevels =
+	std::string Map_levelOne =
 	{
-		"11111111111111111111"
-		"1..................1"
-		"1..................1"
-		"1..........###.....1"
-		"1..........#.#.....1"
-		"1..........#.#.....1"
-		"1..........###.....1"
-		"1..................1"
-		"1..................1"
-		"1...........####...1"
-		"1...........#..#...1"
-		"1...........####...1"
-		"1..................1"
-		"11111111111111111111",
+		"####################"
+		"#..................#"
+		"#..................#"
+		"#..........###.....#"
+		"#..........#.#.....#"
+		"#..........#.#.....#"
+		"#..........###.....#"
+		"#..................#"
+		"#..................#"
+		"#...........####...#"
+		"#...........#..#...#"
+		"#...........####...#"
+		"#..................#"
+		"####################"
+	};
 
+	std::string Map_levelTwo =
+	{
 		"...................."
 		"...................."
 		"...................."
@@ -121,8 +113,11 @@ public:
 		"............#..#...."
 		"............####...."
 		"...................."
-		"....................",
+		"...................."
+	};
 
+	std::string Map_levelThree =
+	{
 		"...................."
 		"...................."
 		"...................."
@@ -137,7 +132,6 @@ public:
 		"............####...."
 		"...................."
 		"...................."
-
 	};
 
 	//texture layout

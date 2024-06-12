@@ -40,24 +40,6 @@ const int PIXELS_PER_METER = 50;
 #define FPS 60
 #define FRAME_TIME_LENGTH (1000 / FPS)
 
-#define GRND_FLOOR '.'     // no block
-#define FRST_FLOOR '#'     // block of height 1
-#define SCND_FLOOR '@'     //                 2
-#define THRD_FLOOR '*'     //                 3
-#define FRTH_FLOOR '-'     //                 4
-#define FFTH_FLOOR '+'     //                 5
-#define SXTH_FLOOR '='     //                 6
 
-#define FLOOR_1QRTR 'Q'    // block of height 1/4
-#define FLOOR_HALVE 'H'    //                 2/4
-#define FLOOR_3QRTR 'T'   //                 3/4
-
-#define TEXTURE_BLANK '.'
-#define TEXTURE_ZERO '0'
-#define TEXTURE_ONE '1'
-#define TEXTURE_TWO '2'
-#define TEXTURE_THREE '3'
-#define TEXTURE_FOUR '4'
-#define TEXTURE_FIVE '5'
 
 #endif // #ifndef DEFS_H
